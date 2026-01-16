@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gridthiya Gaweewong - Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .filter-section {
+            margin: 40px 0;
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .filter-btn.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            padding-left: 140px;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .timeline-item.hidden {
+            display: none;
+        }
+
+        .year {
+            position: absolute;
+            left: 0;
+            font-size: 1.8em;
+            font-weight: 300;
+            color: #333;
+            width: 80px;
+            text-align: right;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 95px;
+            top: 10px;
+            width: 11px;
+            height: 11px;
+            background: #333;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 1px #ddd;
+        }
+
+        .event-content {
+            padding-bottom: 20px;
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #f0f0f0;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        .event-title {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .event-note {
+            margin-top: 8px;
+            font-size: 0.95em;
+            color: #888;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 60px;
+            }
+
+            .timeline-item {
+                padding-left: 90px;
+            }
+
+            .year {
+                font-size: 1.4em;
+                width: 50px;
+            }
+
+            .timeline-item::before {
+                left: 55px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gridthiya Gaweewong</h1>
+        
+        <div class="filter-section">
+            <div class="filter-label">Select Category</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="Life">Life</button>
+                <button class="filter-btn" data-filter="Education">Education</button>
+                <button class="filter-btn" data-filter="Early Career">Early Career</button>
+                <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
+                <button class="filter-btn" data-filter="Film Festival">Film Festival</button>
+                <button class="filter-btn" data-filter="Biennale">Biennale</button>
+                <button class="filter-btn" data-filter="Grants / Awards">Grants / Awards</button>
+                <button class="filter-btn" data-filter="Film Screening">Film Screening</button>
+                <button class="filter-btn" data-filter="Symposium">Symposium</button>
+                <button class="filter-btn" data-filter="Interview / Feature">Interview / Feature</button>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+    </div>
+
+    <script>
+        const timelineData = [
+            {year: 1964, type: "Life", title: "Born in Chiangsan, Chiang Rai Province", description: "Born in Chiangsan, Chiang Rai Province, Northern Thailand", note: "Family operated small cinema"},
+            {year: 1986, type: "Education", title: "Graduated with Bachelor's degree in English", description: "Faculty of Humanities, Ramkhamhaeng University, Bangkok"},
+            {year: 1986, type: "Early Career", title: "Worked as librarian and English teacher", description: "Consortium: Phanat Nikom Refugee Holding Centre, Cholburi province", note: "For Laos and Cambodia migrant children | State Department, UNHCR"},
+            {year: 1991, type: "Early Career", title: "Assistant Manager and Gallery Manager at Dialogue Gallery", description: "Bangkok", note: "Dialogue Gallery, collectors and curators from Japan and Asia Pacific"},
+            {year: 1994, type: "Education", title: "Master's degree at School of Art Institute of Chicago", description: 'Thesis: "An Alternative Space for the Arts in Thailand: Assessing the Feasibility"', note: "School of Art Institute of Chicago (SAIC)"},
+            {year: 1996, type: "Exhibition", title: "Co-founded Project 304 alternative art space", description: "Sahakorn Building, Samsen, Bangkok. Served as Director and Curator", note: "Apichatpong Weerasethakul, Michael Shaowanasai, Sajeethip Nimwijit, Teeraphong Ngamsiljamrus, Prapol Kumjim, Chatchai Puipia; Art advisors: Montien Boonma, Kamol Phaosavasdi, Niti Wattuya"},
+            {year: 1996, type: "Exhibition", title: 'Curated "Hidden Agenda"', description: "First exhibition at Project 304", note: "Michael Shaowanasai, Mongkol Yammanee, Chitti Kasemkitvatana, Sajeetip Nimwijit, Natee Utarit"},
+            {year: 1997, type: "Film Festival", title: "Organized Bangkok International Art Film Festival (BIAFF)", description: "With Project 304", note: "Apichatpong Weerasethakul, Project 304, young film producers"},
+            {year: 1999, type: "Grants / Awards", title: "Received Japan Foundation Grant Program", note: "The Japan Foundation"},
+            {year: 1999, type: "Film Festival", title: "Bangkok Experimental Film Festival (BEFF) 2", note: "Apichatpong Weerasethakul, Project 304"},
+            {year: 1999, type: "Exhibition", title: '"Cities In The Move" event held in Bangkok', note: "French Embassy, cultural attaché Francine Meoule"},
+            {year: 2000, type: "Exhibition", title: 'Curated "Alien(gener)ation 2000" in Bangkok', note: "Various Thai contemporary artists"},
+            {year: 2000, type: "Grants / Awards", title: "Received AFAA scholarship, Paris, France", note: "AFAA Paris"},
+            {year: 2000, type: "Exhibition", title: 'Curated "Under Construction: New Dimension of Asian Art"', note: "The Japan Foundation, young Asian curators"},
+            {year: 2001, type: "Biennale", title: "Curated Thailand section at Tirana Biennale, Albania", note: "Montri Toemsombat, Michael Shaowanasai, Prapon Kumjim, Apichatpong Weerasethakul"},
+            {year: 2001, type: "Film Festival", title: "Bangkok Experimental Film Festival (BEFF) 3", note: "Apichatpong Weerasethakul, Project 304"},
+            {year: 2001, type: "Exhibition", title: 'Curated "Alien(gener)ation Esan version" in Khon Kaen', note: "Various Thai contemporary artists"},
+            {year: 2002, type: "Grants / Awards", title: "Received Asian Cultural Council (ACC) scholarship", description: "To conduct research in Southeast Asia along Mekong River", note: "Asian Cultural Council"},
+            {year: 2002, type: "Film Screening", title: "Film Screening Program at Filmform", description: "Swedish Foundation, Stockholm", note: "Filmform Swedish Foundation"},
+            {year: 2002, type: "Grants / Awards", title: "Received IASPIS scholarship from Sweden", note: "IASPIS Sweden"},
+            {year: 2003, type: "Exhibition", title: 'Curated "Alien(gener)ation Lanna version" in Chiang Mai', note: "Various Thai contemporary artists"},
+            {year: 2003, type: "Film Festival", title: "Bangkok Experimental Film Festival (BEFF) 4", note: "Apichatpong Weerasethakul"},
+            {year: 2003, type: "Exhibition", title: "Project 304 closed"},
+            {year: 2003, type: "Life", title: "Moved to Chiang Mai as independent curator", description: "Worked for Chiang Mai Art and Cultural Center", note: "Chiang Mai Art and Cultural Center"},
+            {year: 2003, type: "Exhibition", title: '"Mekong Art and Cultural Collaboration: A Brainstorming Session"', note: "Heinrich Bell Foundation"},
+            {year: 2004, type: "Exhibition", title: "Ran Switch Media Project and Patiharn Electron program", note: "Suttirat Supaparinya, Santiphap Inkong-Ngam, Rudolf Stoert"},
+            {year: 2004, type: "Exhibition", title: 'Curated "-+- (Negative Plus Negative)" at Earl Lu Gallery, Singapore', note: "Earl Lu Gallery Singapore"},
+            {year: 2004, type: "Exhibition", title: 'Curated "Nothing"', description: "A retrospective by Kamin Lertchaiprasert and Rirkrit Tiravanija, Chiangmai University Art Museum, Chiangmai"},
+            {year: 2004, type: "Exhibition", title: "Temporary Insanity by Pinaree Sanpitak", description: "Jim Thompson Center for Art and Textile, Bangkok"},
+            {year: 2005, type: "Exhibition", title: 'Curated "Bangkok, Bangkok" at KunstenFestivalDesArt', description: "Brussels, Belgium", note: "KunstenFestivalDesArt Brussels"},
+            {year: 2005, type: "Exhibition", title: 'Collaborated on "Politics of Fun"', description: "Haus Der Kulturen Der Welt, Berlin", note: "Ong Keng Sen, Haus Der Kulturen Der Welt"},
+            {year: 2005, type: "Exhibition", title: "Excert Screening at REDCAT", description: "Los Angeles, USA", note: "REDCAT Los Angeles"},
+            {year: 2005, type: "Grants / Awards", title: "Received Grants Award from American Center Foundation", description: "For Independent Curators", note: "American Center Foundation"},
+            {year: 2005, type: "Exhibition", title: "ArtconneXion: Bangkok Version", description: "Art Gallery, Center of Academic Resource, Chulalongkorn University, Bangkok", note: "Curatorial team, ArtconneXion, Southeast Asian Pacific art network, 2004-2005 (Bangkok, Jakarta, Auckland)"},
+            {year: 2005, type: "Exhibition", title: "Interweaving cultures", description: "A collaborative curatorial approach by Sachiko Namba (Tokyo), Ann Coxon (London), Gridthiya Gaweewong (Bangkok) at Art Center, Jim Thompson Thai House Museum, Bangkok"},
+            {year: 2006, type: "Exhibition", title: 'Worked on "Saigon Biennale" project', description: "Ho Chi Minh, Vietnam (project ultimately failed due to government concerns)", note: "Rirkrit Tiravanija (co-curator), Vietnamese government"},
+            {year: 2007, type: "Life", title: "Became Chief Curator and Artistic Director of Jim Thompson Art Center", description: "Bangkok", note: "James H.W. Thompson Foundation, Jim Thompson Art Center"},
+            {year: 2008, type: "Film Festival", title: "Bangkok Experimental Film Festival (BEFF) 5", note: "Apichatpong Weerasethakul"},
+            {year: 2008, type: "Exhibition", title: "Tomyam Pladib", description: "The Jim Thompson Art Center, Bangkok"},
+            {year: 2009, type: "Exhibition", title: 'Curated "Brandnew 2009" at Jim Thompson Art Center', note: "Jim Thompson Art Center"},
+            {year: 2009, type: "Exhibition", title: 'Curated Xawery Wolski\'s "Into an Empty Sky" at JTAC', note: "Xawery Wolski, Jim Thompson Art Center"},
+            {year: 2009, type: "Exhibition", title: 'Curated "Tomyam Pladib" addressing mixed cultures', note: "Jim Thompson Art Center"},
+            {year: 2009, type: "Exhibition", title: 'Curated "Traced, the Social memory of Southeast Asian Video Art"', note: "Jim Thompson Art Center"},
+            {year: 2009, type: "Film Festival", title: "Co-curated Film Festival, Oberhausen, Germany", note: "David Teh, Oberhausen Film Festival"},
+            {year: 2009, type: "Exhibition", title: "Brand New 2009", description: "Bangkok University Art Gallery, Chulalongkorn University Art Gallery, Bangkok"},
+            {year: 2009, type: "Exhibition", title: "Into an Empty Sky, Xawery Wolski", description: "Jim Thompson Art Center, Bangkok, Khonkaen University Art Gallery, Khonkaen, Chiangmai Art and Culture Center, Chiangmai University, Chiangmai"},
+            {year: 2009, type: "Exhibition", title: "Traces, the social memory of Southeast Asian Video Art", description: "Jim Thompson Art Center"},
+            {year: 2010, type: "Exhibition", title: "Farm Story", description: "JT Art Center on Farm, Jim Thompson Farm, Pakthongchai, Nakorn Rachasima"},
+            {year: 2010, type: "Exhibition", title: "Breaking out of the cocoons", description: "A solo show by Montri Toemsombat, Jim Thompson Art Center"},
+            {year: 2010, type: "Exhibition", title: "Participated in Move on Asia Project, Korea", note: "Move on Asia Project Korea"},
+            {year: 2011, type: "Exhibition", title: 'Curated "Between Utopia and Dystopia" in Mexico City', note: "Mexico City art institutions"},
+            {year: 2011, type: "Exhibition", title: "Primitive, Apichatpong Weerasethakul", description: "Jim Thompson Art Center"},
+            {year: 2011, type: "Symposium", title: 'Speaker at "7th Asian Museum Curators Conferences Symposium"', note: "Asian Museum Curators Conference"},
+            {year: 2012, type: "Film Festival", title: "Bangkok Experimental Film Festival (BEFF) 6", note: "Apichatpong Weerasethakul"},
+            {year: 2012, type: "Biennale", title: "Artist in Wonderland, 2012 Kuandu Biennale", description: "Kuandu Museum of Art, Taipei (Thailand section)"},
+            {year: 2013, type: "Interview / Feature", title: 'Participated in "The Guggenheim UBS MAP Global Art Initiative"', note: "Guggenheim Museum, UBS"},
+            {year: 2015, type: "Exhibition", title: 'Curated "Missing Links: Moving Images from Southeast Asia"', description: "Developed from PhD thesis", note: "Jim Thompson Art Center"},
+            {year: 2016, type: "Exhibition", title: 'Curated solo exhibition "The Serenity of Madness"', description: "For Apichatpong Weerasethakul at MAIIAM Contemporary Art Museum, Chiang Mai (travelled worldwide)", note: "Apichatpong Weerasethakul, MAIIAM Contemporary Art Museum"},
+            {year: 2016, type: "Interview / Feature", title: 'Speaker at "The 1990s The Making of Art with Contemporaries"', note: "The Japan Foundation Asia Center"},
+            {year: 2018, type: "Biennale", title: "Curatorial team member of 12th Gwangju Biennale", description: 'Curated main hall "Facing Phantom Borders"', note: "Gwangju Biennale"},
+            {year: 2018, type: "Exhibition", title: 'Curated large-scale exhibition "Patani Semesa" at MAIIAM', note: "MAIIAM Contemporary Art Museum"},
+            {year: 2019, type: "Biennale", title: "Pinaree Sanpitak, Honjima Island", description: "Setouichi Triennale 2019, Japan"},
+            {year: 2020, type: "Exhibition", title: 'Co-curated "ERRATA: Collecting Entangled and Embodied History"', note: "Anna-Catharina Gebbers, Grace Samboh, June Yap, MAIIAM Contemporary Art Museum, Singapore Art Museum, National Gallery de Gegenwart Berlin"},
+            {year: 2020, type: "Exhibition", title: "Becoming Stupa", description: "Selected works of Montien Boonma from Disaphol Chansiri Collection, DC Collection, Chiangmai (Jan – March 2021)"},
+            {year: 2021, type: "Grants / Awards", title: "Awarded Chevalier de l'ordre des Arts et des Lettres", description: "By Ministry of Culture of France", note: "Ministry of Culture France"},
+            {year: 2022, type: "Film Screening", title: "Unaccounted Travelogue", description: "Museum of Contemporary Art, Taipei, Taiwan, ROC"},
+            {year: 2023, type: "Biennale", title: 'Artistic Director of 3rd Thailand Biennale, Chiang Rai "The Open World"', description: "With Rirkrit Tiravanija", note: "Rirkrit Tiravanija (co-director), Angkrit Ajchariyasophon, Manupon Lueangaram"},
+            {year: 2024, type: "Film Festival", title: "BEFF returned for 7th edition", description: "After 12-year pause", note: "Bangkok Experimental Film Festival"},
+            {year: 2024, type: "Grants / Awards", title: "Honored as Outstanding Alumni", description: "By Faculty of Fine and Applied Arts, Chulalongkorn University", note: "Chulalongkorn University"},
+            {year: 2024, type: "Exhibition", title: "Fragmented Reality"},
+            {year: 2024, type: "Exhibition", title: "Kader Attia: Urgency of Existence", description: "Curated by Gridthiya Gaweewong"},
+            {year: 2025, type: "Grants / Awards", title: "Selected as one of five committee members for Documenta16", note: "Documenta16"},
+            {year: 2025, type: "Grants / Awards", title: "Won 2025 Audrey Irmas Award for Curatorial Excellence", note: "Audrey Irmas Award"},
+            {year: 2025, type: "Exhibition", title: "Curated Monuments, solo exhibition by Som Supaparinya", note: "Jim Thompson Art Center"},
+            {year: 2025, type: "Exhibition", title: "Curated The Shattered Worlds: Micro Narratives from the Ho Chi Minh Trail to the Great Steppe", description: "With Rinrada Na Chiangmai and Chanapol Janhom", note: "BACC & Jim Thompson Art Centre"}
+        ];
+
+        function renderTimeline(filter = 'all') {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+            
+            const filteredData = filter === 'all' 
+                ? timelineData 
+                : timelineData.filter(item => item.type === filter);
+            
+            filteredData.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'timeline-item';
+                itemDiv.dataset.type = item.type;
+                
+                let content = `
+                    <div class="year">${item.year}</div>
+                    <div class="event-content">
+                        <div class="event-type">${item.type}</div>
+                        <div class="event-title">${item.title}</div>
+                `;
+                
+                if (item.description) {
+                    content += `<div class="event-description">${item.description}</div>`;
+                }
+                
+                if (item.note) {
+                    content += `<div class="event-note">${item.note}</div>`;
+                }
+                
+                content += `</div>`;
+                itemDiv.innerHTML = content;
+                timeline.appendChild(itemDiv);
+            });
+        }
+
+        renderTimeline();
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderTimeline(this.dataset.filter);
+            });
+        });
+    </script>
+</body>
+</html>
