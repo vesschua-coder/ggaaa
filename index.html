@@ -1,193 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gridthiya Gaweewong Timeline</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #2c3e50; line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-        h1 { font-size: 3em; margin-bottom: 10px; font-weight: 400; color: #1a2332; }
-        .subtitle { font-size: 1.2em; color: #ff6b35; margin-bottom: 40px; font-weight: 300; font-style: italic; }
-        .filter-section { margin: 40px 0; padding: 30px 0; border-top: 2px solid #1a2332; border-bottom: 2px solid #1a2332; }
-        .filter-label { font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; color: #1a2332; font-weight: 600; }
-        .filter-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-        .filter-btn { padding: 10px 20px; background: #fff; border: 2px solid #1a2332; border-radius: 25px; cursor: pointer; font-size: 0.9em; transition: all 0.3s; color: #1a2332; font-weight: 500; }
-        .filter-btn:hover, .filter-btn.active { background: #1a2332; color: #fff; }
-        .timeline { position: relative; padding: 40px 0; }
-        .timeline::before { content: ''; position: absolute; left: 100px; top: 0; bottom: 0; width: 2px; background: #1a2332; }
-        .timeline-item { position: relative; margin-bottom: 60px; padding-left: 140px; }
-        .timeline-item.hidden { display: none; }
-        .year { position: absolute; left: 0; font-size: 1.8em; font-weight: 600; color: #1a2332; width: 80px; text-align: right; }
-        .timeline-item::before { content: ''; position: absolute; left: 92px; top: 10px; width: 18px; height: 18px; background: #ff6b35; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #1a2332; z-index: 1; }
-        .event-content { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .event-type { display: inline-block; padding: 6px 14px; background: #1a2332; color: #fff; font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-radius: 3px; font-weight: 600; }
-        .event-title { font-size: 1.2em; margin-bottom: 10px; font-weight: 600; color: #1a2332; }
-        .event-description { color: #555; line-height: 1.7; margin-bottom: 8px; }
-        .event-note { margin-top: 10px; font-size: 0.9em; color: #777; font-style: italic; }
-        .event-link { display: inline-block; margin-top: 10px; color: #ff6b35; text-decoration: none; font-weight: 500; }
-        .event-link:hover { color: #1a2332; }
-        .media-container { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .media-item { position: relative; cursor: pointer; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .media-item:hover { transform: scale(1.05); }
-        .media-item img { width: 100%; height: 150px; object-fit: cover; display: block; }
-        .video-thumb::after { content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em; color: #fff; background: rgba(26, 35, 50, 0.8); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding-left: 5px; }
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
-        .lightbox.active { display: flex; }
-        .lightbox-content { max-width: 90%; max-height: 90%; position: relative; }
-        .lightbox-content img, .lightbox-content iframe { max-width: 100%; max-height: 90vh; }
-        .lightbox-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: #fff; font-size: 2em; cursor: pointer; padding: 10px; }
-        @media (max-width: 768px) {
-            .timeline::before { left: 60px; }
-            .timeline-item { padding-left: 90px; }
-            .year { font-size: 1.4em; width: 50px; }
-            .timeline-item::before { left: 52px; }
-            h1 { font-size: 2em; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gridthiya Gaweewong Timeline</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#2c3e50;line-height:1.6}.container{max-width:1200px;margin:0 auto;padding:60px 20px}h1{font-size:3em;margin-bottom:10px;font-weight:400;color:#1a2332}.subtitle{font-size:1.2em;color:#ff6b35;margin-bottom:40px;font-weight:300;font-style:italic}.filter-section{margin:40px 0;padding:30px 0;border-top:2px solid #1a2332;border-bottom:2px solid #1a2332}.filter-label{font-size:.85em;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;color:#1a2332;font-weight:600}.filter-buttons{display:flex;flex-wrap:wrap;gap:12px}.filter-btn{padding:10px 20px;background:#fff;border:2px solid #1a2332;border-radius:25px;cursor:pointer;font-size:.9em;transition:all .3s;color:#1a2332;font-weight:500}.filter-btn:hover,.filter-btn.active{background:#1a2332;color:#fff}.timeline{position:relative;padding:40px 0}.timeline::before{content:'';position:absolute;left:100px;top:0;bottom:0;width:2px;background:#1a2332}.timeline-item{position:relative;margin-bottom:60px;padding-left:140px}.timeline-item.hidden{display:none}.year{position:absolute;left:0;font-size:1.8em;font-weight:600;color:#1a2332;width:80px;text-align:right}.timeline-item::before{content:'';position:absolute;left:92px;top:10px;width:18px;height:18px;background:#ff6b35;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #1a2332;z-index:1}.event-content{background:#fff;padding:25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.event-type{display:inline-block;padding:6px 14px;background:#1a2332;color:#fff;font-size:.75em;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;border-radius:3px;font-weight:600}.event-title{font-size:1.2em;margin-bottom:10px;font-weight:600;color:#1a2332}.event-description{color:#555;line-height:1.7;margin-bottom:8px}.event-note{margin-top:10px;font-size:.9em;color:#777;font-style:italic}.event-link{display:inline-block;margin-top:10px;color:#ff6b35;text-decoration:none;font-weight:500;margin-right:15px}.event-link:hover{color:#1a2332}.media-container{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px}.media-item{position:relative;cursor:pointer;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:transform .3s}.media-item:hover{transform:scale(1.05)}.media-item img{width:100%;height:150px;object-fit:cover;display:block}.video-thumb::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2em;color:#fff;background:rgba(26,35,50,.8);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding-left:5px}.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center;padding:20px}.lightbox.active{display:flex}.lightbox-content{max-width:90%;max-height:90%;position:relative}.lightbox-content img,.lightbox-content iframe{max-width:100%;max-height:90vh}.lightbox-close{position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:2em;cursor:pointer;padding:10px}@media(max-width:768px){.timeline::before{left:60px}.timeline-item{padding-left:90px}.year{font-size:1.4em;width:50px}.timeline-item::before{left:52px}h1{font-size:2em}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Gridthiya Gaweewong</h1>
-        <div class="subtitle">The Archive as a Method for Reading Curatorial Practice</div>
-        <div class="filter-section">
-            <div class="filter-label">Select Category</div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="Life">Life</button>
-                <button class="filter-btn" data-filter="Education">Education</button>
-                <button class="filter-btn" data-filter="Early Career">Early Career</button>
-                <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
-                <button class="filter-btn" data-filter="Film Festival">Film Festival</button>
-                <button class="filter-btn" data-filter="Biennale">Biennale</button>
-                <button class="filter-btn" data-filter="Grants / Awards">Grants / Awards</button>
-                <button class="filter-btn" data-filter="Film Screening">Film Screening</button>
-                <button class="filter-btn" data-filter="Symposium">Symposium</button>
-                <button class="filter-btn" data-filter="Interview / Feature">Interview / Feature</button>
-            </div>
-        </div>
-        <div class="timeline" id="timeline"></div>
-    </div>
-    <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-        <div class="lightbox-content">
-            <button class="lightbox-close" onclick="closeLightbox()">×</button>
-            <div id="lightbox-media"></div>
-        </div>
-    </div>
-    <script>
-const data=[
-{y:1964,t:"Life",ti:"Born in Chiangsan, Chiang Rai Province",d:"Northern Thailand",n:"Family operated small cinema"},
-{y:1986,t:"Education",ti:"Graduated with Bachelor's degree in English",d:"Faculty of Humanities, Ramkhamhaeng University, Bangkok"},
-{y:1986,t:"Early Career",ti:"Worked as librarian and English teacher",d:"Consortium: Phanat Nikom Refugee Holding Centre, Cholburi province",n:"For Laos and Cambodia migrant children | State Department, UNHCR"},
-{y:1991,t:"Early Career",ti:"Assistant Manager and Gallery Manager at Dialogue Gallery",d:"Bangkok",n:"Dialogue Gallery, collectors and curators from Japan and Asia Pacific"},
-{y:1994,t:"Education",ti:"Master's degree at School of Art Institute of Chicago",d:'Thesis: "An Alternative Space for the Arts in Thailand: Assessing the Feasibility"',n:"School of Art Institute of Chicago (SAIC)"},
-{y:1996,t:"Exhibition",ti:"Co-founded Project 304 alternative art space",d:"Sahakorn Building, Samsen, Bangkok. Served as Director and Curator",n:"Apichatpong Weerasethakul, Michael Shaowanasai, Sajeethip Nimwijit, Teeraphong Ngamsiljamrus, Prapol Kumjim, Chatchai Puipia",l:"https://aaa.org.hk/tc/collections/search/archive/project-304-archive"},
-{y:1996,t:"Exhibition",ti:'Curated "Hidden Agenda"',d:"First exhibition at Project 304",n:"Michael Shaowanasai, Mongkol Yammanee, Chitti Kasemkitvatana, Sajeetip Nimwijit, Natee Utarit"},
-{y:1997,t:"Film Festival",ti:"Organized Bangkok International Art Film Festival (BIAFF)",d:"With Project 304",n:"Apichatpong Weerasethakul, Project 304, young film producers"},
-{y:1999,t:"Grants / Awards",ti:"Received Japan Foundation Grant Program",n:"The Japan Foundation"},
-{y:1999,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 2",n:"Apichatpong Weerasethakul, Project 304"},
-{y:1999,t:"Exhibition",ti:'"Cities In The Move" event held in Bangkok',n:"French Embassy, cultural attaché Francine Meoule"},
-{y:2000,t:"Exhibition",ti:'Curated "Alien(gener)ation 2000" in Bangkok',n:"Various Thai contemporary artists"},
-{y:2000,t:"Grants / Awards",ti:"Received AFAA scholarship, Paris, France",n:"AFAA Paris"},
-{y:2000,t:"Exhibition",ti:'Curated "Under Construction: New Dimension of Asian Art"',n:"The Japan Foundation, young Asian curators",i:["https://drive.google.com/file/d/1d5N-trE5YTdhxlbepNCITUxj3XUiEFYp/view"]},
-{y:2001,t:"Biennale",ti:"Curated Thailand section at Tirana Biennale, Albania",n:"Montri Toemsombat, Michael Shaowanasai, Prapon Kumjim, Apichatpong Weerasethakul"},
-{y:2001,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 3",n:"Apichatpong Weerasethakul, Project 304"},
-{y:2001,t:"Exhibition",ti:'Curated "Alien(gener)ation Esan version" in Khon Kaen',n:"Various Thai contemporary artists"},
-{y:2002,t:"Grants / Awards",ti:"Received Asian Cultural Council (ACC) scholarship",d:"To conduct research in Southeast Asia along Mekong River",n:"Asian Cultural Council"},
-{y:2002,t:"Film Screening",ti:"Film Screening Program at Filmform",d:"Swedish Foundation, Stockholm",n:"Filmform Swedish Foundation"},
-{y:2002,t:"Grants / Awards",ti:"Received IASPIS scholarship from Sweden",n:"IASPIS Sweden"},
-{y:2003,t:"Exhibition",ti:'Curated "Alien(gener)ation Lanna version" in Chiang Mai',n:"Various Thai contemporary artists"},
-{y:2003,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 4",n:"Apichatpong Weerasethakul"},
-{y:2003,t:"Exhibition",ti:"Project 304 closed"},
-{y:2003,t:"Life",ti:"Moved to Chiang Mai as independent curator",d:"Worked for Chiang Mai Art and Cultural Center",n:"Chiang Mai Art and Cultural Center"},
-{y:2003,t:"Exhibition",ti:'"Mekong Art and Cultural Collaboration: A Brainstorming Session"',n:"Heinrich Bell Foundation"},
-{y:2004,t:"Exhibition",ti:"Ran Switch Media Project and Patiharn Electron program",n:"Suttirat Supaparinya, Santiphap Inkong-Ngam, Rudolf Stoert"},
-{y:2004,t:"Exhibition",ti:'Curated "-+- (Negative Plus Negative)" at Earl Lu Gallery, Singapore',n:"Earl Lu Gallery Singapore",i:["https://drive.google.com/file/d/1sQ3bGiZHyV7WmnG52RFljJJCaNIJjXsC/view"]},
-{y:2004,t:"Exhibition",ti:'Curated "Nothing"',d:"A retrospective by Kamin Lertchaiprasert and Rirkrit Tiravanija, Chiangmai University Art Museum",i:["https://drive.google.com/file/d/1qlvmuMA5cTcB-kIgorOXttKXt9TqTUkh/view","https://drive.google.com/file/d/1JV3FG3J_jYLJTOsQmI16wz3JywQ6nJ7V/view"]},
-{y:2004,t:"Exhibition",ti:"Temporary Insanity by Pinaree Sanpitak",d:"Jim Thompson Center for Art and Textile, Bangkok"},
-{y:2005,t:"Exhibition",ti:'Curated "Bangkok, Bangkok" at KunstenFestivalDesArt',d:"Brussels, Belgium",n:"KunstenFestivalDesArt Brussels",i:["https://drive.google.com/file/d/16jLsS0BglNhak4pDp3jiXKNRx0uDf41Q/view","https://drive.google.com/file/d/1OWFnDVN72m1xCTMEbtMM3hgRQuX1m8qh/view"]},
-{y:2005,t:"Exhibition",ti:'Collaborated on "Politics of Fun"',d:"Haus Der Kulturen Der Welt, Berlin",n:"Ong Keng Sen, Haus Der Kulturen Der Welt",i:["https://drive.google.com/file/d/1yR5hQcHEKMhAhD_kboD2aT8qHdPt9DTT/view"],v:["https://drive.google.com/file/d/1c98muJMlI_Jcu7AjQOB3kIY7fu52-QVS/view"]},
-{y:2005,t:"Exhibition",ti:"Excert Screening at REDCAT",d:"Los Angeles, USA",n:"REDCAT Los Angeles"},
-{y:2005,t:"Grants / Awards",ti:"Received Grants Award from American Center Foundation",d:"For Independent Curators",n:"American Center Foundation"},
-{y:2005,t:"Exhibition",ti:"ArtconneXion: Bangkok Version",d:"Art Gallery, Center of Academic Resource, Chulalongkorn University, Bangkok",n:"Curatorial team, ArtconneXion, Southeast Asian Pacific art network, 2004-2005",i:["https://drive.google.com/file/d/1RD9rwbsCT1FzYjxgUP0-6Z8pmCLV_8RZ/view"]},
-{y:2005,t:"Exhibition",ti:"Interweaving cultures",d:"A collaborative curatorial approach by Sachiko Namba (Tokyo), Ann Coxon (London), Gridthiya Gaweewong (Bangkok) at Art Center, Jim Thompson Thai House Museum, Bangkok",i:["https://drive.google.com/file/d/1RLFr2owpGW30TzNKRM3a6-hMliXFDtRp/view","https://drive.google.com/file/d/1bza2PU9BtQx06xitP4n88Nq65j9jlq7z/view","https://drive.google.com/file/d/17qe4KGfY63wiDlrtD8y3w4AKY2tKXkUI/view"]},
-{y:2006,t:"Exhibition",ti:'Worked on "Saigon Biennale" project',d:"Ho Chi Minh, Vietnam (project ultimately failed due to government concerns)",n:"Rirkrit Tiravanija (co-curator), Vietnamese government",i:["https://drive.google.com/file/d/1ravFHcR3tMvq0GDDptHjqwWGokrk4cuo/view","https://drive.google.com/file/d/1XpmrSuV3cnlfeKtZE7C8tXRXiulNiiQi/view"]},
-{y:2007,t:"Life",ti:"Became Chief Curator and Artistic Director of Jim Thompson Art Center",d:"Bangkok",n:"James H.W. Thompson Foundation, Jim Thompson Art Center"},
-{y:2008,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 5",n:"Apichatpong Weerasethakul"},
-{y:2008,t:"Exhibition",ti:"Tomyam Pladib",d:"The Jim Thompson Art Center, Bangkok"},
-{y:2009,t:"Exhibition",ti:'Curated "Brandnew 2009" at Jim Thompson Art Center',n:"Jim Thompson Art Center"},
-{y:2009,t:"Exhibition",ti:'Curated Xawery Wolski\'s "Into an Empty Sky" at JTAC',n:"Xawery Wolski, Jim Thompson Art Center"},
-{y:2009,t:"Exhibition",ti:'Curated "Tomyam Pladib" addressing mixed cultures',n:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1eDu9AA3pLgyyRSM_lxRPIVNJveyWdRI5/view","https://drive.google.com/file/d/19zMeidjp_CtCQIy_OKCNiL7Uo9XiSsSs/view"]},
-{y:2009,t:"Exhibition",ti:'Curated "Traced, the Social memory of Southeast Asian Video Art"',n:"Jim Thompson Art Center"},
-{y:2009,t:"Film Festival",ti:"Co-curated Film Festival, Oberhausen, Germany",n:"David Teh, Oberhausen Film Festival"},
-{y:2009,t:"Exhibition",ti:"Brand New 2009",d:"Bangkok University Art Gallery, Chulalongkorn University Art Gallery, Bangkok"},
-{y:2009,t:"Exhibition",ti:"Into an Empty Sky, Xawery Wolski",d:"Jim Thompson Art Center, Bangkok, Khonkaen University Art Gallery, Chiangmai Art and Culture Center"},
-{y:2009,t:"Exhibition",ti:"Traces, the social memory of Southeast Asian Video Art",d:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1pc-HeILtWtFjuELeC17cnHIiim5pJbQp/view"]},
-{y:2010,t:"Exhibition",ti:"Farm Story",d:"JT Art Center on Farm, Jim Thompson Farm, Pakthongchai, Nakorn Rachasima",i:["https://drive.google.com/file/d/1kZePV2mi1M84yKWFd2H0Q8JCQEKaAN25/view","https://drive.google.com/file/d/1LelQoyp7bvIp64olJWujVMEqPLXeFA2F/view"]},
-{y:2010,t:"Exhibition",ti:"Breaking out of the cocoons",d:"A solo show by Montri Toemsombat, Jim Thompson Art Center",i:["https://drive.google.com/file/d/1bhNzhrbtlb2JbJQlN0JWC9dwZwDniNV6/view","https://drive.google.com/file/d/1rAKWTb92RSQdJSrLube6bhsb5OiEfMqQ/view"]},
-{y:2010,t:"Exhibition",ti:"Participated in Move on Asia Project, Korea",n:"Move on Asia Project Korea"},
-{y:2011,t:"Exhibition",ti:'Curated "Between Utopia and Dystopia" in Mexico City',n:"Mexico City art institutions",i:["https://drive.google.com/file/d/1T1Pi8HruVUITVCekn9VFlpQ5QZwXGFSG/view"]},
-{y:2011,t:"Exhibition",ti:"Primitive, Apichatpong Weerasethakul",d:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1SWjLFhKBBTXooxh6T_r_muYkxCzV8Z1i/view"]},
-{y:2011,t:"Symposium",ti:'Speaker at "7th Asian Museum Curators Conferences Symposium"',n:"Asian Museum Curators Conference",i:["https://drive.google.com/file/d/1mioR7wS51gRKAUyYPlW0WZC2t8_WDY41/view"]},
-{y:2012,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 6",n:"Apichatpong Weerasethakul"},
-{y:2012,t:"Biennale",ti:"Artist in Wonderland, 2012 Kuandu Biennale",d:"Kuandu Museum of Art, Taipei (Thailand section)"},
-{y:2013,t:"Interview / Feature",ti:'Participated in "The Guggenheim UBS MAP Global Art Initiative"',n:"Guggenheim Museum, UBS",i:["https://drive.google.com/file/d/1-ZA_R34k1S1L34mn42uzzWX33Wy0nJAr/view"]},
-{y:2015,t:"Exhibition",ti:'Curated "Missing Links: Moving Images from Southeast Asia"',d:"Developed from PhD thesis",n:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1LelQoyp7bvIp64olJWujVMEqPLXeFA2F/view","https://drive.google.com/file/d/1HAXz4jkekOLZV4qKPVP0vySeh-tM_LmO/view"]},
-{y:2016,t:"Exhibition",ti:'Curated solo exhibition "The Serenity of Madness"',d:"For Apichatpong Weerasethakul at MAIIAM Contemporary Art Museum, Chiang Mai (travelled worldwide)",n:"Apichatpong Weerasethakul, MAIIAM Contemporary Art Museum"},
-{y:2016,t:"Interview / Feature",ti:'Speaker at "The 1990s The Making of Art with Contemporaries"',n:"The Japan Foundation Asia Center"},
-{y:2018,t:"Biennale",ti:"Curatorial team member of 12th Gwangju Biennale",d:'Curated main hall "Facing Phantom Borders"',n:"Gwangju Biennale",i:["https://drive.google.com/file/d/1ixaB9buYu7r3oklDpW6H6exgQyk7FT94/view"],v:["https://drive.google.com/file/d/1DxQkxRBiR3aLbB9bzh-E-PaBpmKG06h_/view"]},
-{y:2018,t:"Exhibition",ti:'Curated large-scale exhibition "Patani Semesa" at MAIIAM',n:"MAIIAM Contemporary Art Museum"},
-{y:2019,t:"Biennale",ti:"Pinaree Sanpitak, Honjima Island",d:"Setouichi Triennale 2019, Japan",i:["https://drive.google.com/file/d/1N16YPb7XejOEAxu2UYRkzsrG5mYmlPDy/view"]},
-{y:2020,t:"Exhibition",ti:'Co-curated "ERRATA: Collecting Entangled and Embodied History"',n:"Anna-Catharina Gebbers, Grace Samboh, June Yap, MAIIAM Contemporary Art Museum, Singapore Art Museum, National Gallery de Gegenwart Berlin"},
-{y:2020,t:"Exhibition",ti:"Becoming Stupa",d:"Selected works of Montien Boonma from Disaphol Chansiri Collection, DC Collection, Chiangmai (Jan – March 2021)"},
-{y:2021,t:"Grants / Awards",ti:"Awarded Chevalier de l'ordre des Arts et des Lettres",d:"By Ministry of Culture of France",n:"Ministry of Culture France"},
-{y:2022,t:"Film Screening",ti:"Unaccounted Travelogue",d:"Museum of Contemporary Art, Taipei, Taiwan, ROC"},
-{y:2023,t:"Biennale",ti:'Artistic Director of 3rd Thailand Biennale, Chiang Rai "The Open World"',d:"With Rirkrit Tiravanija",n:"Rirkrit Tiravanija (co-director), Angkrit Ajchariyasophon, Manupon Lueangaram",i:["https://drive.google.com/file/d/11YDxeJ1H85eXkcrB43t5fCPnHo464Taq/view"],v:["https://drive.google.com/file/d/1lZW3F4yTzzLK3AZf5urC8EPa1-hnLO1d/view"]},
-{y:2024,t:"Film Festival",ti:"BEFF returned for 7th edition",d:"After 12-year pause",n:"Bangkok Experimental Film Festival"},
-{y:2024,t:"Grants / Awards",ti:"Honored as Outstanding Alumni",d:"By Faculty of Fine and Applied Arts, Chulalongkorn University",n:"Chulalongkorn University"},
-{y:2024,t:"Symposium",ti:"How to Build a Biennial Together",d:"Can Artists and Curators Really Collaborate? Organised in collaboration with Sharjah Art Foundation",i:["https://drive.google.com/file/d/1M6SlIeLsl1m82WLtb61QhzxWwshs4igk/view"]},
-{y:2024,t:"Exhibition",ti:"Fragmented Reality"},
-{y:2024,t:"Exhibition",ti:"Kader Attia: Urgency of Existence",d:"Curated by Gridthiya Gaweewong"},
-{y:2025,t:"Grants / Awards",ti:"Selected as one of five committee members for Documenta16",n:"Documenta16"},
-{y:2025,t:"Grants / Awards",ti:"Won 2025 Audrey Irmas Award for Curatorial Excellence",n:"Audrey Irmas Award"},
-{y:2025,t:"Exhibition",ti:"Curated Monuments, solo exhibition by Som Supaparinya",n:"Jim Thompson Art Center",l:"https://www.instagram.com/p/DSCk1Y-jHag/"},
-{y:2025,t:"Exhibition",ti:"Curated The Shattered Worlds: Micro Narratives from the Ho Chi Minh Trail to the Great Steppe",d:"With Rinrada Na Chiangmai and Chanapol Janhom",n:"BACC & Jim Thompson Art Centre"}
-];
-
-function gid(u){const m=u.match(/\/d\/([^\/]+)/);return m?m[1]:null}
-function gth(u){const id=gid(u);return id?`https://drive.google.com/thumbnail?id=${id}&sz=w400`:u}
-function gem(u){const id=gid(u);return id?`https://drive.google.com/file/d/${id}/preview`:u}
-
-function render(f='all'){
-const tl=document.getElementById('timeline');
-tl.innerHTML='';
-const fd=f==='all'?data:data.filter(x=>x.t===f);
-fd.forEach(e=>{
-const dv=document.createElement('div');
-dv.className='timeline-item';
-let h=`<div class="year">${e.y}</div><div class="event-content"><div class="event-type">${e.t}</div><div class="event-title">${e.ti}</div>`;
-if(e.d)h+=`<div class="event-description">${e.d}</div>`;
-if(e.n)h+=`<div class="event-note">${e.n}</div>`;
-if(e.l)h+=`<a href="${e.l}" target="_blank" class="event-link">View more →</a>`;
-if(e.i||e.v){
-h+=`<div class="media-container">`;
-if(e.i)e.i.forEach(img=>h+=`<div class="media-item" onclick='oi("${gem(img)}")'><img src="${gth(img)}" alt="Image"></div>`);
-if(e.v)e.v.forEach(vid=>h+=`<div class="media-item video-thumb" onclick='ov("${gem(vid)}")'><img src="${gth(vid)}" alt="Video"></div>`);
-h+=`</div>`;
-}
-h+=`</div>`;
-dv.innerHTML=h;
-tl.appendChild(dv);
-});
-}
-
-function oi(s){document.getElementById('lightbox-media').innerHTML=`<img src="${s}">`;document.getElementById('lightbox').classList.add('active');}
-function ov(s){document.getElementById('lightbox-media').innerHTML=`<iframe src="${s}" width="800" height="600" allow="autoplay"></iframe>`;document.getElementById('lightbox').classList.add('active');}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.getElementById('lightbox-media').innerHTML='';}
-
-render();
-document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');render(this.dataset.filter);}));
-    </script>
+<div class="container">
+<h1>Gridthiya Gaweewong</h1>
+<div class="subtitle">The Archive as a Method for Reading Curatorial Practice</div>
+<div class="filter-section">
+<div class="filter-label">Select Category</div>
+<div class="filter-buttons">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="Life">Life</button>
+<button class="filter-btn" data-filter="Education">Education</button>
+<button class="filter-btn" data-filter="Early Career">Early Career</button>
+<button class="filter-btn" data-filter="Exhibition">Exhibition</button>
+<button class="filter-btn" data-filter="Film Festival">Film Festival</button>
+<button class="filter-btn" data-filter="Biennale">Biennale</button>
+<button class="filter-btn" data-filter="Grants / Awards">Grants / Awards</button>
+<button class="filter-btn" data-filter="Film Screening">Film Screening</button>
+<button class="filter-btn" data-filter="Symposium">Symposium</button>
+<button class="filter-btn" data-filter="Interview / Feature">Interview / Feature</button>
+</div>
+</div>
+<div class="timeline" id="timeline"></div>
+</div>
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+<div class="lightbox-content">
+<button class="lightbox-close" onclick="closeLightbox()">×</button>
+<div id="lightbox-media"></div>
+</div>
+</div>
+<script>
+const D=[{y:1964,t:"Life",ti:"Born in Chiangsan, Chiang Rai Province",d:"Northern Thailand",n:"Family operated small cinema"},{y:1986,t:"Education",ti:"Graduated with Bachelor's degree in English",d:"Faculty of Humanities, Ramkhamhaeng University, Bangkok"},{y:1986,t:"Early Career",ti:"Worked as librarian and English teacher",d:"Consortium: Phanat Nikom Refugee Holding Centre, Cholburi province",n:"For Laos and Cambodia migrant children | State Department, UNHCR"},{y:1991,t:"Early Career",ti:"Assistant Manager and Gallery Manager at Dialogue Gallery",d:"Bangkok",n:"Dialogue Gallery, collectors and curators from Japan and Asia Pacific"},{y:1994,t:"Education",ti:"Master's degree at School of Art Institute of Chicago",d:'Thesis: "An Alternative Space for the Arts in Thailand: Assessing the Feasibility"',n:"School of Art Institute of Chicago (SAIC)",l:["https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-biographical-materials/object/gridthiya-gaweewong-and-the-others-at-the-school-of-the-art-institute-of-chicago/sort/title-asc","https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-education/object/a-feasibility-study-of-establishing-an-art-space-in-thailand-draft/sort/title-asc"]},{y:1996,t:"Exhibition",ti:"Co-founded Project 304 alternative art space",d:"Sahakorn Building, Samsen, Bangkok. Served as Director and Curator",n:"Apichatpong Weerasethakul, Michael Shaowanasai, Sajeethip Nimwijit, Teeraphong Ngamsiljamrus, Prapol Kumjim, Chatchai Puipia",l:["https://aaa.org.hk/tc/collections/search/archive/project-304-archive"]},{y:1996,t:"Exhibition",ti:'Curated "Hidden Agenda"',d:"First exhibition at Project 304",n:"Michael Shaowanasai, Mongkol Yammanee, Chitti Kasemkitvatana, Sajeetip Nimwijit, Natee Utarit"},{y:1997,t:"Film Festival",ti:"Organized Bangkok International Art Film Festival (BIAFF)",d:"With Project 304",n:"Apichatpong Weerasethakul, Project 304, young film producers"},{y:1999,t:"Grants / Awards",ti:"Received Japan Foundation Grant Program",n:"The Japan Foundation",l:["https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-fellowship-grant-and-award/object/gridthiya-gaweewong-awarded-grant-from-the-japan-foundation-grant-programme/sort/title-asc"]},{y:1999,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 2",n:"Apichatpong Weerasethakul, Project 304"},{y:1999,t:"Exhibition",ti:'"Cities In The Move" event held in Bangkok',n:"French Embassy, cultural attaché Francine Meoule"},{y:2000,t:"Exhibition",ti:'Curated "Alien(gener)ation 2000" in Bangkok',n:"Various Thai contemporary artists"},{y:2000,t:"Grants / Awards",ti:"Received AFAA scholarship, Paris, France",n:"AFAA Paris"},{y:2000,t:"Exhibition",ti:'Curated "Under Construction: New Dimension of Asian Art"',n:"The Japan Foundation, young Asian curators",i:["https://drive.google.com/file/d/1d5N-trE5YTdhxlbepNCITUxj3XUiEFYp/view"]},{y:2001,t:"Biennale",ti:"Curated Thailand section at Tirana Biennale, Albania",n:"Montri Toemsombat, Michael Shaowanasai, Prapon Kumjim, Apichatpong Weerasethakul"},{y:2001,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 3",n:"Apichatpong Weerasethakul, Project 304"},{y:2001,t:"Exhibition",ti:'Curated "Alien(gener)ation Esan version" in Khon Kaen',n:"Various Thai contemporary artists"},{y:2002,t:"Grants / Awards",ti:"Received Asian Cultural Council (ACC) scholarship",d:"To conduct research in Southeast Asia along Mekong River",n:"Asian Cultural Council"},{y:2002,t:"Film Screening",ti:"Film Screening Program at Filmform",d:"Swedish Foundation, Stockholm",n:"Filmform Swedish Foundation"},{y:2002,t:"Grants / Awards",ti:"Received IASPIS scholarship from Sweden",n:"IASPIS Sweden"},{y:2003,t:"Exhibition",ti:'Curated "Alien(gener)ation Lanna version" in Chiang Mai',n:"Various Thai contemporary artists"},{y:2003,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 4",n:"Apichatpong Weerasethakul"},{y:2003,t:"Exhibition",ti:"Project 304 closed"},{y:2003,t:"Life",ti:"Moved to Chiang Mai as independent curator",d:"Worked for Chiang Mai Art and Cultural Center",n:"Chiang Mai Art and Cultural Center"},{y:2003,t:"Exhibition",ti:'"Mekong Art and Cultural Collaboration: A Brainstorming Session"',n:"Heinrich Bell Foundation",l:["https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-mekong-art-and-cultural-collaboration/object/mekong-art-and-cultural-collaboration-project-brainstorming-session/sort/title-asc"]},{y:2004,t:"Exhibition",ti:"Ran Switch Media Project and Patiharn Electron program",n:"Suttirat Supaparinya, Santiphap Inkong-Ngam, Rudolf Stoert"},{y:2004,t:"Exhibition",ti:'Curated "-+- (Negative Plus Negative)" at Earl Lu Gallery, Singapore',n:"Earl Lu Gallery Singapore",i:["https://drive.google.com/file/d/1sQ3bGiZHyV7WmnG52RFljJJCaNIJjXsC/view"]},{y:2004,t:"Exhibition",ti:'Curated "Nothing"',d:"A retrospective by Kamin Lertchaiprasert and Rirkrit Tiravanija, Chiangmai University Art Museum",i:["https://drive.google.com/file/d/1qlvmuMA5cTcB-kIgorOXttKXt9TqTUkh/view","https://drive.google.com/file/d/1JV3FG3J_jYLJTOsQmI16wz3JywQ6nJ7V/view"]},{y:2004,t:"Exhibition",ti:"Temporary Insanity by Pinaree Sanpitak",d:"Jim Thompson Center for Art and Textile, Bangkok"},{y:2005,t:"Exhibition",ti:'Curated "Bangkok, Bangkok" at KunstenFestivalDesArt',d:"Brussels, Belgium",n:"KunstenFestivalDesArt Brussels",i:["https://drive.google.com/file/d/16jLsS0BglNhak4pDp3jiXKNRx0uDf41Q/view","https://drive.google.com/file/d/1OWFnDVN72m1xCTMEbtMM3hgRQuX1m8qh/view"]},{y:2005,t:"Exhibition",ti:'Collaborated on "Politics of Fun"',d:"Haus Der Kulturen Der Welt, Berlin",n:"Ong Keng Sen",i:["https://drive.google.com/file/d/1yR5hQcHEKMhAhD_kboD2aT8qHdPt9DTT/view"],v:["https://drive.google.com/file/d/1c98muJMlI_Jcu7AjQOB3kIY7fu52-QVS/view"]},{y:2005,t:"Exhibition",ti:"Excert Screening at REDCAT",d:"Los Angeles, USA",n:"REDCAT Los Angeles"},{y:2005,t:"Grants / Awards",ti:"Received Grants Award from American Center Foundation",d:"For Independent Curators"},{y:2005,t:"Exhibition",ti:"ArtconneXion: Bangkok Version",d:"Chulalongkorn University, Bangkok",i:["https://drive.google.com/file/d/1RD9rwbsCT1FzYjxgUP0-6Z8pmCLV_8RZ/view"]},{y:2005,t:"Exhibition",ti:"Interweaving cultures",d:"Collaborative curatorial approach at Jim Thompson Thai House Museum, Bangkok",i:["https://drive.google.com/file/d/1RLFr2owpGW30TzNKRM3a6-hMliXFDtRp/view","https://drive.google.com/file/d/1bza2PU9BtQx06xitP4n88Nq65j9jlq7z/view","https://drive.google.com/file/d/17qe4KGfY63wiDlrtD8y3w4AKY2tKXkUI/view"]},{y:2006,t:"Exhibition",ti:'Worked on "Saigon Biennale" project',d:"Ho Chi Minh, Vietnam (project failed due to government concerns)",i:["https://drive.google.com/file/d/1ravFHcR3tMvq0GDDptHjqwWGokrk4cuo/view","https://drive.google.com/file/d/1XpmrSuV3cnlfeKtZE7C8tXRXiulNiiQi/view"]},{y:2007,t:"Life",ti:"Became Chief Curator and Artistic Director of Jim Thompson Art Center",d:"Bangkok"},{y:2008,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 5",n:"Apichatpong Weerasethakul"},{y:2009,t:"Exhibition",ti:'Curated "Brandnew 2009" at Jim Thompson Art Center'},{y:2009,t:"Exhibition",ti:'Curated "Tomyam Pladib"',n:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1eDu9AA3pLgyyRSM_lxRPIVNJveyWdRI5/view","https://drive.google.com/file/d/19zMeidjp_CtCQIy_OKCNiL7Uo9XiSsSs/view"]},{y:2009,t:"Film Festival",ti:"Co-curated Film Festival, Oberhausen, Germany",l:["https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-film-screenings/object/film-ticket-for-the-55th-international-short-film-festival-oberhausen-unreal-asia/sort/title-asc","https://aaa.org.hk/en/collections/search/archive/gridthiya-gaweewong-archive-film-screenings/object/55th-international-short-film-festival-oberhausen-unreal-asia-list-of-films/sort/title-asc"]},{y:2009,t:"Exhibition",ti:"Traces, the social memory of Southeast Asian Video Art",d:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1pc-HeILtWtFjuELeC17cnHIiim5pJbQp/view"]},{y:2010,t:"Exhibition",ti:"Farm Story",d:"Jim Thompson Farm",i:["https://drive.google.com/file/d/1kZePV2mi1M84yKWFd2H0Q8JCQEKaAN25/view","https://drive.google.com/file/d/1LelQoyp7bvIp64olJWujVMEqPLXeFA2F/view"]},{y:2010,t:"Exhibition",ti:"Breaking out of the cocoons",d:"Montri Toemsombat, Jim Thompson Art Center",i:["https://drive.google.com/file/d/1bhNzhrbtlb2JbJQlN0JWC9dwZwDniNV6/view","https://drive.google.com/file/d/1rAKWTb92RSQdJSrLube6bhsb5OiEfMqQ/view"]},{y:2011,t:"Exhibition",ti:'Curated "Between Utopia and Dystopia"',d:"Mexico City",i:["https://drive.google.com/file/d/1T1Pi8HruVUITVCekn9VFlpQ5QZwXGFSG/view"]},{y:2011,t:"Exhibition",ti:"Primitive, Apichatpong Weerasethakul",d:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1SWjLFhKBBTXooxh6T_r_muYkxCzV8Z1i/view"]},{y:2011,t:"Exhibition",ti:"When the (city of) angel cries",d:"City_net Asia",i:["https://drive.google.com/file/d/1mioR7wS51gRKAUyYPlW0WZC2t8_WDY41/view"]},{y:2012,t:"Film Festival",ti:"Bangkok Experimental Film Festival (BEFF) 6"},{y:2012,t:"Biennale",ti:"Artist in Wonderland, 2012 Kuandu Biennale",d:"Taipei"},{y:2013,t:"Interview / Feature",ti:"The Guggenheim UBS MAP Global Art Initiative",i:["https://drive.google.com/file/d/1-ZA_R34k1S1L34mn42uzzWX33Wy0nJAr/view"]},{y:2015,t:"Exhibition",ti:"Missing Links: Moving Images from Southeast Asia",d:"Jim Thompson Art Center",i:["https://drive.google.com/file/d/1LelQoyp7bvIp64olJWujVMEqPLXeFA2F/view","https://drive.google.com/file/d/1HAXz4jkekOLZV4qKPVP0vySeh-tM_LmO/view"]},{y:2016,t:"Exhibition",ti:'Curated "The Serenity of Madness"',d:"Apichatpong Weerasethakul at MAIIAM"},{y:2018,t:"Biennale",ti:"12th Gwangju Biennale",d:'Curated "Facing Phantom Borders"',i:["https://drive.google.com/file/d/1ixaB9buYu7r3oklDpW6H6exgQyk7FT94/view"],v:["https://drive.google.com/file/d/1DxQkxRBiR3aLbB9bzh-E-PaBpmKG06h_/view"]},{y:2019,t:"Symposium",ti:"U-jazdowski: A talk with Gridthiya Gaweewong",i:["https://drive.google.com/file/d/1N16YPb7XejOEAxu2UYRkzsrG5mYmlPDy/view"]},{y:2020,t:"Exhibition",ti:"ERRATA: Collecting Entangled and Embodied History"},{y:2021,t:"Grants / Awards",ti:"Awarded Chevalier de l'ordre des Arts et des Lettres",d:"Ministry of Culture of France"},{y:2023,t:"Biennale",ti:"3rd Thailand Biennale",d:'"The Open World" Chiang Rai',i:["https://drive.google.com/file/d/11YDxeJ1H85eXkcrB43t5fCPnHo464Taq/view"],v:["https://drive.google.com/file/d/1lZW3F4yTzzLK3AZf5urC8EPa1-hnLO1d/view"]},{y:2024,t:"Film Festival",ti:"BEFF returned for 7th edition"},{y:2024,t:"Grants / Awards",ti:"Honored as Outstanding Alumni",d:"Chulalongkorn University"},{y:2024,t:"Symposium",ti:"How to Build a Biennial Together",i:["https://drive.google.com/file/d/1M6SlIeLsl1m82WLtb61QhzxWwshs4igk/view"]},{y:2025,t:"Grants / Awards",ti:"Won 2025 Audrey Irmas Award for Curatorial Excellence"},{y:2025,t:"Exhibition",ti:"Curated Monuments",d:"Som Supaparinya",l:["https://www.instagram.com/p/DSCk1Y-jHag/"]}];function gid(u){const m=u.match(/\/d\/([^\/]+)/);return m?m[1]:null}function gth(u){const id=gid(u);return id?`https://drive.google.com/thumbnail?id=${id}&sz=w400`:'https://via.placeholder.com/400x300?text=Link'}function gem(u){const id=gid(u);return id?`https://drive.google.com/file/d/${id}/preview`:u}function render(f='all'){const tl=document.getElementById('timeline');tl.innerHTML='';const fd=f==='all'?D:D.filter(x=>x.t===f);fd.forEach(e=>{const dv=document.createElement('div');dv.className='timeline-item';let h=`<div class="year">${e.y}</div><div class="event-content"><div class="event-type">${e.t}</div><div class="event-title">${e.ti}</div>`;if(e.d)h+=`<div class="event-description">${e.d}</div>`;if(e.n)h+=`<div class="event-note">${e.n}</div>`;if(e.l){if(Array.isArray(e.l)){e.l.forEach((lk,idx)=>h+=`<a href="${lk}" target="_blank" class="event-link">View Link ${idx+1} →</a>`);}else{h+=`<a href="${e.l}" target="_blank" class="event-link">View more →</a>`;}}if(e.i||e.v){h+=`<div class="media-container">`;if(e.i)e.i.forEach(img=>h+=`<div class="media-item" onclick='oi("${gem(img)}")'><img src="${gth(img)}"></div>`);if(e.v)e.v.forEach(vid=>h+=`<div class="media-item video-thumb" onclick='ov("${gem(vid)}")'><img src="${gth(vid)}"></div>`);h+=`</div>`;}h+=`</div>`;dv.innerHTML=h;tl.appendChild(dv);});}function oi(s){document.getElementById('lightbox-media').innerHTML=`<img src="${s}">`;document.getElementById('lightbox').classList.add('active');}function ov(s){document.getElementById('lightbox-media').innerHTML=`<iframe src="${s}" width="800" height="600" allow="autoplay"></iframe>`;document.getElementById('lightbox').classList.add('active');}function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.getElementById('lightbox-media').innerHTML='';}render();document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');render(this.dataset.filter);}));
+</script>
 </body>
 </html>
